@@ -1,0 +1,27 @@
+steps:
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          - "build"
+          - "--build-arg"
+          - "DATABASE_HOST_ARG=34.101.203.93"
+          - "--build-arg"
+          - "DATABASE_PORT_ARG=5432"
+          - "--build-arg"
+          - "DATABASE_NAME_ARG=fitnessist-db"
+          - "--build-arg"
+          - "DATABASE_USERNAME_ARG=dev_triad"
+          - "--build-arg"
+          - "DATABASE_PASSWORD_ARG=triadiganteng"
+          - "--build-arg"
+          - "GCS_BUCKET_NAME_ARG=food-recognization-model"
+          - "--build-arg"
+          - "GCS_MODEL_FILE_NAME_ARG=model/foodModel1.h5"
+          - "-t"
+          - "gcr.io/$PROJECT_ID/model-service"
+          - "."
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          - "push"
+          - "gcr.io/$PROJECT_ID/model-service"
+images:
+    - "gcr.io/$PROJECT_ID/model-service"
