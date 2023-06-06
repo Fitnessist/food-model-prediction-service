@@ -4,6 +4,7 @@ FROM python:3.9-slim
 # Mengatur working directory di dalam container
 WORKDIR /app
 
+COPY credentials/credential.json ./credentials
 # Menyalin file requirements.txt ke dalam container
 COPY requirements.txt .
 
@@ -13,5 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Menyalin seluruh isi proyek ke dalam container
 COPY . .
 
+EXPOSE 8080
+
 # Menjalankan aplikasi Flask
-CMD ["python", "run.py"]
+CMD ["python", "main.py"]
