@@ -20,8 +20,14 @@ def download_model():
     # Define the path to the model file in the bucket
     model_blob = bucket.blob(model_file_name)
 
+    # Specify the local directory path to save the downloaded model
+    local_directory = 'temp/model'
+
+    # Create the local directory if it doesn't exist
+    os.makedirs(local_directory, exist_ok=True)
+
     # Specify the local path to save the downloaded model
-    local_model_path = 'temp/model/model.h5'
+    local_model_path = os.path.join(local_directory, 'model.h5')
 
     # Download the model file from the bucket
     model_blob.download_to_filename(local_model_path)
