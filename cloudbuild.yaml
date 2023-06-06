@@ -9,7 +9,7 @@ steps:
           - "--build-arg"
           - "DATABASE_NAME_ARG=fitnessist-db"
           - "--build-arg"
-          - "DATABASE_USERNAME_ARG=dev_triad"
+          - "DATABASE_USERNAME_ARG=dev_triadi"
           - "--build-arg"
           - "DATABASE_PASSWORD_ARG=triadiganteng"
           - "--build-arg"

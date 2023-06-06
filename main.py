@@ -7,4 +7,4 @@ app = Flask(__name__)
 app.register_blueprint(predict_bp)
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0', port=8080)
