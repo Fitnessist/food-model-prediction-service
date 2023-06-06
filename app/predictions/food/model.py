@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String
 from app.infrastructure.database import Base, get_db
+from functools import lru_cache
 
 class Food(Base):
     __tablename__ = 'foods'
@@ -15,9 +16,10 @@ class Food(Base):
     
 
     @staticmethod
+    @lru_cache(maxsize=None)
     def get_food_list():
         with get_db() as db:
-            foods = db.query(Food).all()
+            foods = db.query(Food).order_by(Food.food_name).all()
             food_list = []
 
             for food in foods:

@@ -18,7 +18,7 @@ DB_PASSWORD = os.getenv('DATABASE_PASSWORD', 'root')
 DB_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 # Buat objek engine SQLAlchemy
-engine = create_engine(DB_URL)
+engine = create_engine(DB_URL, echo=True)
 
 # Buat objek sesi database
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -30,6 +30,7 @@ Base = declarative_base()
 def get_db():
     db = SessionLocal()
     try:
-        yield db
-    finally:
+        return db
+    except:
         db.close()
+        raise
