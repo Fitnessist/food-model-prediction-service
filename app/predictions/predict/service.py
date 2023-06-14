@@ -7,8 +7,8 @@ from app.infrastructure.database import Base, get_db
 from app.predictions.food.model import Food
 
 # Load the model from Google Cloud Storage
-# model_path = download_model()
-model_path = "temp/model/model.h5"
+model_path = download_model()
+# model_path = "temp/model/model.h5"
 model = tf.keras.models.load_model(model_path)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
